@@ -4,7 +4,7 @@
 [![Build](https://img.shields.io/github/actions/workflow/status/john-ea/docker-webserver/action_branch.yml?style=for-the-badge&logo=github&event=push&label=Build)](https://github.com/john-ea/docker-webserver/actions/workflows/action_branch.yml)
 [![Docker pulls](https://img.shields.io/docker/pulls/johnea/webserver.svg?style=for-the-badge&logo=docker)](https://hub.docker.com/r/johnea/webserver/tags)
 
-> ##### 🐱 GitHub Fork: [john-ea/webserver](https://github.com/john-ea/webserver)
+> ##### 🐱 GitHub Fork: [john-ea/docker-webserver](https://github.com/john-ea/docker-webserver)
 > ##### 🐱 GitHub original “upstream” repository: : [devilbox/docker-nginx-stable](https://github.com/devilbox/docker-nginx-stable)
 
 **Available Architectures:**  `amd64`, `arm64`
@@ -25,15 +25,15 @@
 docker pull johnea/webserver:<docker-tag>
 ```
 
-[tag_nginx_stable_latest]: https://github.com/john-ea/webserver/blob/my-image/Dockerfiles/Dockerfile-nginx-stable.latest
-[tag_nginx_stable_debian]: https://github.com/john-ea/webserver/blob/my-image/Dockerfiles/Dockerfile-nginx-stable.debian
-[tag_nginx_stable_alpine]: https://github.com/john-ea/webserver/blob/my-image/Dockerfiles/Dockerfile-nginx-stable.alpine
-[tag_nginx_mainline_latest]: https://github.com/john-ea/webserver/blob/my-image/Dockerfiles/Dockerfile-nginx-mainline.latest
-[tag_nginx_mainline_debian]: https://github.com/john-ea/webserver/blob/my-image/Dockerfiles/Dockerfile-nginx-mainline.debian
-[tag_nginx_mainline_alpine]: https://github.com/john-ea/webserver/blob/my-image/Dockerfiles/Dockerfile-nginx-mainline.alpine
-[tag_apache_2.4_latest]: https://github.com/john-ea/webserver/blob/my-image/Dockerfiles/Dockerfile-apache-2.4.latest
-[tag_apache_2.4_debian]: https://github.com/john-ea/webserver/blob/my-image/Dockerfiles/Dockerfile-apache-2.4.debian
-[tag_apache_2.4_alpine]: https://github.com/john-ea/webserver/blob/my-image/Dockerfiles/Dockerfile-apache-2.4.alpine
+[tag_nginx_stable_latest]: https://github.com/john-ea/docker-webserver/blob/my-image/Dockerfiles/Dockerfile-nginx-stable.latest
+[tag_nginx_stable_debian]: https://github.com/john-ea/docker-webserver/blob/my-image/Dockerfiles/Dockerfile-nginx-stable.debian
+[tag_nginx_stable_alpine]: https://github.com/john-ea/docker-webserver/blob/my-image/Dockerfiles/Dockerfile-nginx-stable.alpine
+[tag_nginx_mainline_latest]: https://github.com/john-ea/docker-webserver/blob/my-image/Dockerfiles/Dockerfile-nginx-mainline.latest
+[tag_nginx_mainline_debian]: https://github.com/john-ea/docker-webserver/blob/my-image/Dockerfiles/Dockerfile-nginx-mainline.debian
+[tag_nginx_mainline_alpine]: https://github.com/john-ea/docker-webserver/blob/my-image/Dockerfiles/Dockerfile-nginx-mainline.alpine
+[tag_apache_2.4_latest]: https://github.com/john-ea/docker-webserver/blob/my-image/Dockerfiles/Dockerfile-apache-2.4.latest
+[tag_apache_2.4_debian]: https://github.com/john-ea/docker-webserver/blob/my-image/Dockerfiles/Dockerfile-apache-2.4.debian
+[tag_apache_2.4_alpine]: https://github.com/john-ea/docker-webserver/blob/my-image/Dockerfiles/Dockerfile-apache-2.4.alpine
 
 ----
 

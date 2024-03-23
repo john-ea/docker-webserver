@@ -39,6 +39,11 @@ on:
       refs:
         description: "The determined git ref matrix (only during scheduled run)"
         value: ${{ jobs.params.outputs.refs }}
+    inputs:
+      matrix:
+        description: 'The version build matrix as JSON string ( list of objects: [{NAME, VERSION[], ARCH[]}] ).'
+        required: false
+        type: string
       default_branch:
         description: 'The default branch of this repository to fetch latest tags from.'
         required: false
