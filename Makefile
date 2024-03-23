@@ -24,19 +24,21 @@ include $(MAKEFILES)
 TAG        = latest
 
 # Makefile.docker overwrites
-NAME       = Nginx
-VERSION    = stable
-IMAGE      = devilbox/nginx-$(VERSION)
+DOCKER_USER       = johnea
+# NAME    = no default
+# VERSION = no default
+SERVICE    = $(shell echo $(NAME) | tr '[:upper:]' '[:lower:]')
+IMAGE      = $(DOCKER_USER)/webserver
 FLAVOUR    = latest
 DIR        = Dockerfiles
-FILE       = Dockerfile.$(FLAVOUR)
+FILE       = Dockerfile-$(SERVICE)-$(VERSION).$(FLAVOUR)
 ifeq ($(strip $(FLAVOUR)),latest)
-	DOCKER_TAG = $(TAG)
+	DOCKER_TAG = $(SERVICE)-$(VERSION)-$(TAG)
 else
 	ifeq ($(strip $(TAG)),latest)
-		DOCKER_TAG = $(FLAVOUR)
+		DOCKER_TAG = $(SERVICE)-$(VERSION)-$(FLAVOUR)
 	else
-		DOCKER_TAG = $(FLAVOUR)-$(TAG)
+		DOCKER_TAG = $(SERVICE)-$(VERSION)-$(FLAVOUR)-$(TAG)
 	endif
 endif
 ARCH       = linux/amd64
@@ -90,7 +92,7 @@ manifest-push: docker-manifest-push
 # -------------------------------------------------------------------------------------------------
 .PHONY: test
 test:
-	./tests/start-ci.sh $(IMAGE) $(DOCKER_TAG) $(ARCH)
+	./tests/start-ci.sh $(IMAGE) $(DOCKER_TAG) $(ARCH) $(DOCKER_USER)
 
 
 # -------------------------------------------------------------------------------------------------

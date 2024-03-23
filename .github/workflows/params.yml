@@ -13,10 +13,16 @@ env:
   MATRIX: >-
     [
       {
-        "NAME":    "Nginx",
-        "VERSION": ["stable"],
+        "NAME":    "Apache",
+        "VERSION": ["2.4"],
         "FLAVOUR": ["latest", "debian", "alpine"],
-        "ARCH":    ["linux/amd64", "linux/386", "linux/arm64", "linux/arm/v7", "linux/arm/v6"]
+        "ARCH":    ["linux/amd64", "linux/arm64"]
+      },
+      {
+        "NAME":    "Nginx",
+        "VERSION": ["stable", "mainline"],
+        "FLAVOUR": ["latest", "debian", "alpine"],
+        "ARCH":    ["linux/amd64", "linux/arm64"]
       }
     ]
 
@@ -33,6 +39,16 @@ on:
       refs:
         description: "The determined git ref matrix (only during scheduled run)"
         value: ${{ jobs.params.outputs.refs }}
+      default_branch:
+        description: 'The default branch of this repository to fetch latest tags from.'
+        required: false
+        default: ${{ github.event.repository.default_branch }}
+        type: string
+      branches:
+        description: 'Comma separated list of branches to create build matrix for.'
+        required: false
+        default: ${{ github.event.repository.default_branch }}
+        type: string
 
 jobs:
   params:
@@ -43,17 +59,24 @@ jobs:
       refs: ${{ steps.set-refs.outputs.matrix }}
 
     steps:
+      - name: "[DEBUG] Workflow Inputs"
+        shell: bash
+        run: |
+          echo 'matrix: ${{ inputs.matrix }} '
+          echo 'default_branch: ${{ inputs.default_branch }} '
+          echo 'branches: ${{ inputs.branches }} '
+
       - name: "[Set-Output] Matrix"
         id: set-matrix
         run: |
-          echo "::set-output name=matrix::$( echo '${{ env.MATRIX }}' | jq -M -c )"
+          echo "matrix=$( echo '${{ env.MATRIX }}' | jq -M -c )" >> $GITHUB_OUTPUT
 
       - name: "[Set-Output] Matrix 'Refs' (master branch and latest tag)"
         id: set-refs
-        uses: cytopia/git-ref-matrix-action@v0.1.13
+        uses: john-ea/devilbox-actions/.github/actions/git-ref-matrix-action@master
         with:
-          repository_default_branch: master
-          branches: master
+          repository_default_branch: ${{ inputs.default_branch }}
+          branches: ${{ inputs.branches }}
           num_latest_tags: 1
         if: github.event_name == 'schedule'
 

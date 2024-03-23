@@ -9,6 +9,7 @@ CWD="$(cd -P -- "$(dirname -- "$0")" && pwd -P)"
 IMAGE="${1}"
 TAG="${2}"
 ARCH="${3}"
+DOCKER_USER="${4}"
 
 
 ###
@@ -75,7 +76,7 @@ create_app "${MOUNT_HOST}" "${DOCROOT}" "" "index.${APP1_EXT}" "<?php echo '${AP
 ###
 run "docker run -d --platform ${ARCH} --name ${NAME_PHPFPM} \
 -v ${MOUNT_HOST}:${MOUNT_CONT} \
-devilbox/php-fpm-8.1 >/dev/null"
+${DOCKER_USER}/php-fpm-8.1 >/dev/null"
 
 
 ###

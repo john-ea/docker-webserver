@@ -5,7 +5,7 @@ services:
 
   # HTTPD Server
   httpd:
-    image: devilbox/nginx-stable:alpine
+    image: johnea/webserver:nginx-stable-alpine
     build:
       context: ../../Dockerfiles
       dockerfile: Dockerfile.alpine
@@ -23,7 +23,7 @@ services:
 
   # PHP-FPM Server
   php:
-    image: devilbox/php-fpm:8.2-base
+    image: johnea/php-fpm:8.2-base
     hostname: php
     environment:
       - NEW_UID=1000

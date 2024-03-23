@@ -3,7 +3,7 @@
 # -------------------------------------------------------------------------------------------------
 # Job Name
 # -------------------------------------------------------------------------------------------------
-name: nightly
+name: 🕛 Nightly
 
 
 # -------------------------------------------------------------------------------------------------
@@ -13,6 +13,8 @@ on:
   # Runs daily
   schedule:
     - cron: '0 0 * * *'
+  # Dispatch: allows for manual trigger via GH UI
+  workflow_dispatch:
 
 
 jobs:
@@ -24,7 +26,7 @@ jobs:
   # (2/2) Build
   docker:
     needs: [params]
-    uses: devilbox/github-actions/.github/workflows/docker-name-version-flavour-arch.yml@master
+    uses: john-ea/devilbox-actions/.github/workflows/docker-name-version-flavour-arch.yml@master
     with:
       enabled: true
       can_deploy: true

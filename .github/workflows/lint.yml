@@ -19,4 +19,4 @@ on:
 # -------------------------------------------------------------------------------------------------
 jobs:
   lint:
-    uses: devilbox/github-actions/.github/workflows/lint-generic.yml@master
+    uses: john-ea/devilbox-actions/.github/workflows/lint-generic.yml@master

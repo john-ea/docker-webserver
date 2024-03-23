@@ -1,0 +1,132 @@
+---
+
+# -------------------------------------------------------------------------------------------------
+# Job Name
+# -------------------------------------------------------------------------------------------------
+name: 🤞 Manual Build
+
+
+# -------------------------------------------------------------------------------------------------
+# When to run
+# -------------------------------------------------------------------------------------------------
+on:
+  # Dispatch: allows for manual trigger via GH UI
+  workflow_dispatch:
+    inputs:
+      run-name:
+        description: 'Name of workflow'
+        required: true
+        default: '🤞 Manual Build'
+        type: string
+      name:
+        description: 'Name'
+        required: true
+        default: 'Nginx'
+        type: choice
+        options:
+          - 'Apache'
+          - 'Nginx'
+      version:
+        description: 'Comma separated list of version (example: "2.4", "stable", "mainline")'
+        required: true
+        default: '"stable", "mainline"'
+        type: string
+      flavour:
+        description: 'Comma separated list of Flavour (example: "latest", "debian", "alpine")'
+        required: true
+        default: '"latest", "debian", "alpine"'
+        type: string
+      arch:
+        description: 'Comma separated list of Arch platform (example: "linux/amd64", "linux/arm64")'
+        required: true
+        default: '"linux/amd64", "linux/arm64"'
+        type: string
+      default_branch:
+        description: 'The default branch of this repository to fetch latest tags from. Default: my-image'
+        required: false
+        default: 'my-image'
+        type: string
+      tag:
+        description: 'The name for the "latest" Docker tag (default: latest).'
+        required: false
+        default: 'latest'
+        type: string
+      branches:
+        description: 'Comma separated list of branches to create build matrix for. Default: my-image'
+        required: false
+        default: 'my-image'
+        type: string
+      deploy:
+        description: 'Deploy image'
+        type: boolean
+        required: true
+        default: false
+      test:
+        description: 'Test image'
+        type: boolean
+        required: true
+        default: true
+
+
+# -------------------------------------------------------------------------------------------------
+# Custom Variables
+# -------------------------------------------------------------------------------------------------
+env:
+  MATRIX: >-
+    [
+      {
+        "NAME":    ${{ format('"{0}"', inputs.name) }},
+        "VERSION": ${{ format('[{0}]', inputs.version) }},
+        "FLAVOUR": ${{ format('[{0}]', inputs.flavour) }},
+        "ARCH":    ${{ format('[{0}]', inputs.arch) }}
+      }
+    ]
+
+# -------------------------------------------------------------------------------------------------
+# Custom name of workflow
+# -------------------------------------------------------------------------------------------------
+run-name: ${{ inputs.run-name }} 🚀
+
+
+jobs:
+  # (1/3) Determine env
+  set-env:
+    name: Compute env
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ env.MATRIX }}
+#      matrix: ${{ steps.variables.outputs.matrix }}
+    steps:
+      - name: Print inputs passed to the reusable workflow
+        id: variables
+        if: false
+        run: echo
+#        run: |
+#          echo "matrix=${{ env.MATRIX }}" >> $GITHUB_OUTPUT
+
+  # (2/3) Determine repository params
+  params:
+    name: Compute params
+    needs: [ set-env ]
+    uses: ./.github/workflows/params.yml
+    with:
+      matrix: ${{ needs.set-env.outputs.matrix }}
+      default_branch: ${{ inputs.default_branch }}
+      branches: ${{ inputs.branches }}
+
+  # (3/3) Build
+  docker:
+    name: Build Image
+    needs: [params]
+    uses: john-ea/devilbox-actions/.github/workflows/docker-name-version-flavour-arch.yml@master
+    with:
+      enabled: true
+      can_deploy: ${{ inputs.deploy }}
+      matrix: ${{ needs.params.outputs.matrix }}
+      refs: ${{ needs.params.outputs.refs }}
+      default_branch: ${{ inputs.default_branch }}
+      tag: ${{ inputs.tag }}
+      test: ${{ inputs.test }}
+    secrets:
+      dockerhub_username: ${{ secrets.DOCKERHUB_USERNAME }}
+      dockerhub_password: ${{ secrets.DOCKERHUB_PASSWORD }}
