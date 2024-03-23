@@ -102,7 +102,7 @@ create_app "${MOUNT_HOST}" "${DOCROOT}" "${APP2_NAME}" "index.${APP2_EXT}" "<?ph
 ###
 run "docker run -d --platform ${ARCH} --name ${NAME_PHPFPM} \
 -v ${MOUNT_HOST}:${MOUNT_CONT} \
-${DOCKER_USER}/php-fpm-8.1 >/dev/null"
+${DOCKER_USER}/php-fpm:8.3-base >/dev/null"
 
 
 ###

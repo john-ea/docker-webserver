@@ -33,7 +33,11 @@ FLAVOUR    = latest
 DIR        = Dockerfiles
 FILE       = Dockerfile-$(SERVICE)-$(VERSION).$(FLAVOUR)
 ifeq ($(strip $(FLAVOUR)),latest)
-	DOCKER_TAG = $(SERVICE)-$(VERSION)-$(TAG)
+	ifeq ($(strip $(TAG)),latest)
+		DOCKER_TAG = $(SERVICE)-$(VERSION)
+	else
+		DOCKER_TAG = $(SERVICE)-$(VERSION)-$(TAG)
+	endif
 else
 	ifeq ($(strip $(TAG)),latest)
 		DOCKER_TAG = $(SERVICE)-$(VERSION)-$(FLAVOUR)
