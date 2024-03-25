@@ -18,20 +18,20 @@
 ## 🐋 Available Docker tags
 
 
-[`nginx-stable-latest`][tag_nginx_stable_latest] [`nginx-stable-debian`][tag_nginx_stable_debian] [`nginx-stable-alpine`][tag_nginx_stable_alpine]
-[`nginx-mainline-latest`][tag_nginx_mainline_latest] [`nginx-mainline-debian`][tag_nginx_mainline_debian] [`nginx-mainline-alpine`][tag_nginx_mainline_alpine]
-[`apache-2.4-latest`][tag_apache_2.4_latest] [`apache-2.4-debian`][tag_apache_2.4_debian] [`apache-2.4-alpine`][tag_apache_2.4_alpine]
+[`nginx-stable`][tag_nginx_stable] [`nginx-stable-debian`][tag_nginx_stable_debian] [`nginx-stable-alpine`][tag_nginx_stable_alpine]
+[`nginx-mainline`][tag_nginx_mainline] [`nginx-mainline-debian`][tag_nginx_mainline_debian] [`nginx-mainline-alpine`][tag_nginx_mainline_alpine]
+[`apache-2.4`][tag_apache_2.4] [`apache-2.4-debian`][tag_apache_2.4_debian] [`apache-2.4-alpine`][tag_apache_2.4_alpine]
 ```bash
 docker pull johnea/webserver:<docker-tag>
 ```
 
-[tag_nginx_stable_latest]: https://github.com/john-ea/docker-webserver/blob/my-image/Dockerfiles/Dockerfile-nginx-stable.latest
+[tag_nginx_stable]: https://github.com/john-ea/docker-webserver/blob/my-image/Dockerfiles/Dockerfile-nginx-stable.latest
 [tag_nginx_stable_debian]: https://github.com/john-ea/docker-webserver/blob/my-image/Dockerfiles/Dockerfile-nginx-stable.debian
 [tag_nginx_stable_alpine]: https://github.com/john-ea/docker-webserver/blob/my-image/Dockerfiles/Dockerfile-nginx-stable.alpine
-[tag_nginx_mainline_latest]: https://github.com/john-ea/docker-webserver/blob/my-image/Dockerfiles/Dockerfile-nginx-mainline.latest
+[tag_nginx_mainline]: https://github.com/john-ea/docker-webserver/blob/my-image/Dockerfiles/Dockerfile-nginx-mainline.latest
 [tag_nginx_mainline_debian]: https://github.com/john-ea/docker-webserver/blob/my-image/Dockerfiles/Dockerfile-nginx-mainline.debian
 [tag_nginx_mainline_alpine]: https://github.com/john-ea/docker-webserver/blob/my-image/Dockerfiles/Dockerfile-nginx-mainline.alpine
-[tag_apache_2.4_latest]: https://github.com/john-ea/docker-webserver/blob/my-image/Dockerfiles/Dockerfile-apache-2.4.latest
+[tag_apache_2.4]: https://github.com/john-ea/docker-webserver/blob/my-image/Dockerfiles/Dockerfile-apache-2.4.latest
 [tag_apache_2.4_debian]: https://github.com/john-ea/docker-webserver/blob/my-image/Dockerfiles/Dockerfile-apache-2.4.debian
 [tag_apache_2.4_alpine]: https://github.com/john-ea/docker-webserver/blob/my-image/Dockerfiles/Dockerfile-apache-2.4.alpine
 
