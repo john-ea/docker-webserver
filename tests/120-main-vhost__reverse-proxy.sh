@@ -86,7 +86,7 @@ EOF
 ###
 run "docker run -d --name ${NAME_RPROXY} \
 -v ${MOUNT_HOST}:${MOUNT_CONT} \
-node:19-alpine node /var/www/default/app.js >/dev/null"
+node:20-alpine node /var/www/default/app.js >/dev/null"
 
 
 ###

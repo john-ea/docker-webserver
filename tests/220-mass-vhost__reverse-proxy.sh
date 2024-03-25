@@ -120,14 +120,14 @@ EOF
 ###
 ### Pull node image
 ###
-run "docker pull --platform linux/amd64 node:19-alpine"
+run "docker pull --platform linux/amd64 node:20-alpine"
 
 ###
 ### Start Node-1 Container (tcp 3000)
 ###
 run "docker run -d --name ${NAME_RPROXY1} \
 -v ${APP1_DIR}:/app \
-node:19-alpine node /app/app.js >/dev/null"
+node:20-alpine node /app/app.js >/dev/null"
 
 
 ###
@@ -135,7 +135,7 @@ node:19-alpine node /app/app.js >/dev/null"
 ###
 run "docker run -d --name ${NAME_RPROXY2} \
 -v ${APP2_DIR}:/app \
-node:19-alpine node /app/app.js >/dev/null"
+node:20-alpine node /app/app.js >/dev/null"
 
 
 ###
