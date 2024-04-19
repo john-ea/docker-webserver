@@ -4,7 +4,7 @@ description: File a bug report
 title: "[Bug]: "
 labels: ["bug", "status:triage"]
 assignees:
-  - cytopia
+  - john-ea
 
 body:
 

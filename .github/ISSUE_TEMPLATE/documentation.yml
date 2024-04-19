@@ -4,7 +4,7 @@ description: Something is missing, unclear or wrong in the documentation.
 title: "[Docs]: "
 labels: ["documentation", "status:triage"]
 assignees:
-  - cytopia
+  - john-ea
 
 body:
 

@@ -4,7 +4,7 @@ description: Report something to the maintainer
 title: "[Report]: "
 labels: ["report", "status:triage"]
 assignees:
-  - cytopia
+  - john-ea
 
 body:
 

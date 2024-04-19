@@ -4,6 +4,13 @@
 [![Build](https://img.shields.io/github/actions/workflow/status/john-ea/docker-webserver/action_branch.yml?style=for-the-badge&logo=github&event=push&label=Build)](https://github.com/john-ea/docker-webserver/actions/workflows/action_branch.yml)
 [![Docker pulls](https://img.shields.io/docker/pulls/johnea/webserver.svg?style=for-the-badge&logo=docker)](https://hub.docker.com/r/johnea/webserver/tags)
 
+___
+
+The original Nginx stable was created and maintained by [cytopia](https://github.com/cytopia) in the [devilbox/docker-nginx-stable](https://github.com/devilbox/docker-nginx-stable) repository.
+
+Thanks to [cytopia](https://github.com/cytopia) and the [devilbox](https://github.com/devilbox) project.
+___
+
 > ##### 🐱 GitHub Fork: [john-ea/docker-webserver](https://github.com/john-ea/docker-webserver)
 > ##### 🐱 GitHub original “upstream” repository: : [devilbox/docker-nginx-stable](https://github.com/devilbox/docker-nginx-stable)
 
@@ -40,5 +47,3 @@ docker pull johnea/webserver:<docker-tag>
 ## 🗎 License
 
 **[MIT License](LICENSE)**
-
-Thanks to [cytopia](https://github.com/cytopia) and the [devilbox](https://github.com/devilbox) project.
