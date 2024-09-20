@@ -102,7 +102,7 @@ Where `<procotol>` can by one of `http`, `https`, `ws` or `wss` (depending what 
 
 ## ☆ Customization per virtual host
 
-Each virtual host is generated from templates by **[vhost-gen](https://github.com/devilbox/vhost-gen/tree/master/etc/templates)**. As `vhost-gen` is really flexible and allows combining multiple templates, you can copy and alter an existing template and then place it in a subdirectory of your project folder. The subdirectory is specified by `MASS_VHOST_TEMPLATE_DIR`.
+Each virtual host is generated from templates by **[vhost-gen](https://github.com/john-ea/vhost-gen/tree/master/etc/templates)**. As `vhost-gen` is really flexible and allows combining multiple templates, you can copy and alter an existing template and then place it in a subdirectory of your project folder. The subdirectory is specified by `MASS_VHOST_TEMPLATE_DIR`.
 
 **Assumption:** `/local/path` is mounted to `/shared/httpd`
 

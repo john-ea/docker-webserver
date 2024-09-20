@@ -23,7 +23,7 @@ DOCKER_LOGS="${12}"           # Enable Docker logs?
 CA_KEY_FILE="${13}"           # Path to CA key file
 CA_CRT_FILE="${14}"           # Path to CA crt file
 VHOSTGEN_TEMPLATE_DIR="${15}" # vhost-gen template dir (via watcherd: "%p/${MASS_VHOST_TPL_DIR}")
-VHOSTGEN_HTTPD_SERVER="${16}" # nginx, apache22 or apache24 (determines the template to choose)
+VHOSTGEN_HTTPD_SERVER="${16}" # nginx, apache24 (determines the template to choose)
 
 
 

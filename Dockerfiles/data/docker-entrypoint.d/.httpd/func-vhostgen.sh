@@ -17,7 +17,7 @@ set -o pipefail
 ### Generate vhost-gen config file (not template)
 ###
 generate_vhostgen_conf() {
-	local httpd_server="${1}"   # nginx, apache22, apache24
+	local httpd_server="${1}"   # nginx, apache24
 	local conf_dir="${2}" # Store generated httpd.conf in this directory
 	local tld_suffix="${3}"
 	local docroot_subdir="${4}"
@@ -64,7 +64,7 @@ generate_vhostgen_conf() {
 	fi
 
 
-	# https://github.com/devilbox/vhost-gen/blob/master/etc/conf.yml
+	# https://github.com/john-ea/vhost-gen/blob/master/etc/conf.yml
 	OUT=$(cat <<EOF
 ---
 server: ${httpd_server}
@@ -82,7 +82,7 @@ vhost:
     http2: ${http2_enable}
     dir_crt: ${dir_crt}
     dir_key: ${dir_key}
-    protocols: 'TLSv1 TLSv1.1 TLSv1.2'
+    protocols: 'TLSv1 TLSv1.1 TLSv1.2 TLSv1.3'
     honor_cipher_order: 'on'
     ciphers: 'HIGH:!aNULL:!MD5'
   log:

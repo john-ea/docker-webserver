@@ -43,7 +43,7 @@ vhostgen_copy_custom_template() {
 ### Generate config for MAIN_VHOST
 ###
 vhostgen_main_generate_config() {
-	local httpd_server="${1}"  # nginx, apache22 or apache24
+	local httpd_server="${1}"  # nginx, apache24
 	local backend_string="${2}"
 	local http2_enable="${3}"
 	local aliases_allow="${4}"

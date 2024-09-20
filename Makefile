@@ -117,8 +117,6 @@ __repo_fix_examples:
 	find examples/ -type f -print0 | xargs -0 -n1 sh -c \
 		'if grep "nginx-mainline" "$${1}">/dev/null; then sed -i"" "s|devilbox/nginx-mainline|$(IMAGE)|g" "$${1}";fi' --
 	find examples/ -type f -print0 | xargs -0 -n1 sh -c \
-		'if grep "apache-2.2" "$${1}">/dev/null; then sed -i"" "s|devilbox/apache-2.2|$(IMAGE)|g" "$${1}";fi' --
-	find examples/ -type f -print0 | xargs -0 -n1 sh -c \
 		'if grep "apache-2.4" "$${1}">/dev/null; then sed -i"" "s|devilbox/apache-2.4|$(IMAGE)|g" "$${1}";fi' --
 
 ###
@@ -131,8 +129,6 @@ __repo_fix_doc:
 	find doc/ -name '*.md' -type f -print0 | xargs -0 -n1 sh -c \
 		'if grep "nginx-mainline" "$${1}">/dev/null; then sed -i"" "s|devilbox/nginx-mainline|$(IMAGE)|g" "$${1}";fi' --
 	find doc/ -name '*.md' -type f -print0 | xargs -0 -n1 sh -c \
-		'if grep "apache-2.2" "$${1}">/dev/null; then sed -i"" "s|devilbox/apache-2.2|$(IMAGE)|g" "$${1}";fi' --
-	find doc/ -name '*.md' -type f -print0 | xargs -0 -n1 sh -c \
 		'if grep "apache-2.4" "$${1}">/dev/null; then sed -i"" "s|devilbox/apache-2.4|$(IMAGE)|g" "$${1}";fi' --
 
 ###
@@ -142,20 +138,16 @@ __repo_fix_doc:
 __repo_fix_readme:
 	sed -i'' "s/^# Nginx stable$$/# $(NAME) $(VERSION)/g"   README.md
 	sed -i'' "s/^# Nginx mainline$$/# $(NAME) $(VERSION)/g" README.md
-	sed -i'' "s/^# Apache 2.2$$/# $(NAME) $(VERSION)/g"     README.md
 	sed -i'' "s/^# Apache 2.4$$/# $(NAME) $(VERSION)/g"     README.md
 	@#
 	sed -i'' "s|docker--nginx--stable|$$(   echo "docker/$(IMAGE)" | awk -F'/' '{print $$1"-"$$3}' | awk -F'-' '{print $$1"--"$$2"--"$$3}' )|g" README.md
 	sed -i'' "s|docker--nginx--mainline|$$( echo "docker/$(IMAGE)" | awk -F'/' '{print $$1"-"$$3}' | awk -F'-' '{print $$1"--"$$2"--"$$3}' )|g" README.md
-	sed -i'' "s|docker--apache--2.2|$$(     echo "docker/$(IMAGE)" | awk -F'/' '{print $$1"-"$$3}' | awk -F'-' '{print $$1"--"$$2"--"$$3}' )|g" README.md
 	sed -i'' "s|docker--apache--2.4|$$(     echo "docker/$(IMAGE)" | awk -F'/' '{print $$1"-"$$3}' | awk -F'-' '{print $$1"--"$$2"--"$$3}' )|g" README.md
 	@#
 	sed -i'' "s|docker-nginx-stable|$$(   echo "docker-/$(IMAGE)" | awk -F'/' '{print $$1$$3}')|g" README.md
 	sed -i'' "s|docker-nginx-mainline|$$( echo "docker-/$(IMAGE)" | awk -F'/' '{print $$1$$3}')|g" README.md
-	sed -i'' "s|docker-apache-2.2|$$(     echo "docker-/$(IMAGE)" | awk -F'/' '{print $$1$$3}')|g" README.md
 	sed -i'' "s|docker-apache-2.4|$$(     echo "docker-/$(IMAGE)" | awk -F'/' '{print $$1$$3}')|g" README.md
 	@#
 	sed -i'' 's|devilbox/nginx-stable|$(IMAGE)|g'   README.md
 	sed -i'' 's|devilbox/nginx-mainline|$(IMAGE)|g' README.md
-	sed -i'' 's|devilbox/apache-2.2|$(IMAGE)|g'     README.md
 	sed -i'' 's|devilbox/apache-2.4|$(IMAGE)|g'     README.md

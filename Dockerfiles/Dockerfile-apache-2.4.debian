@@ -12,9 +12,9 @@ LABEL \
 ###
 ### Build arguments
 ###
-ARG VHOST_GEN_GIT_REF=1.0.10
+ARG VHOST_GEN_GIT_REF=1.0.11
 ARG WATCHERD_GIT_REF=v1.1.0
-ARG CERT_GEN_GIT_REF=0.10
+ARG CERT_GEN_GIT_REF=0.11
 
 ENV BUILD_DEPS \
 	make \
@@ -36,7 +36,7 @@ RUN set -eux \
 		${RUN_DEPS} \
 	\
 	# Install vhost-gen
-	&& wget --no-check-certificate -O vhost-gen.tar.gz "https://github.com/devilbox/vhost-gen/archive/${VHOST_GEN_GIT_REF}.tar.gz" \
+	&& wget --no-check-certificate -O vhost-gen.tar.gz "https://github.com/john-ea/vhost-gen/archive/${VHOST_GEN_GIT_REF}.tar.gz" \
 	&& tar xvfz vhost-gen.tar.gz \
 	&& cd "vhost-gen-${VHOST_GEN_GIT_REF}" \
 	&& make install \
@@ -44,8 +44,8 @@ RUN set -eux \
 	&& rm -rf vhost*gen* \
 	\
 	# Install cert-gen
-	&& wget --no-check-certificate -O /usr/bin/ca-gen https://raw.githubusercontent.com/devilbox/cert-gen/${CERT_GEN_GIT_REF}/bin/ca-gen \
-	&& wget --no-check-certificate -O /usr/bin/cert-gen https://raw.githubusercontent.com/devilbox/cert-gen/${CERT_GEN_GIT_REF}/bin/cert-gen \
+	&& wget --no-check-certificate -O /usr/bin/ca-gen https://raw.githubusercontent.com/john-ea/cert-gen/${CERT_GEN_GIT_REF}/bin/ca-gen \
+	&& wget --no-check-certificate -O /usr/bin/cert-gen https://raw.githubusercontent.com/john-ea/cert-gen/${CERT_GEN_GIT_REF}/bin/cert-gen \
 	&& chmod +x /usr/bin/ca-gen \
 	&& chmod +x /usr/bin/cert-gen \
 	\

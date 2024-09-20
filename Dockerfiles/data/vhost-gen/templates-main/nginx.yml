@@ -55,7 +55,8 @@
 ###
 vhost: |
   server {
-      listen       __PORT____HTTP_PROTO____DEFAULT_VHOST__;
+      listen       __PORT____DEFAULT_VHOST__;
+      __HTTP_PROTO__
       server_name  __VHOST_NAME__;
 
       access_log   "__ACCESS_LOG__" combined;
