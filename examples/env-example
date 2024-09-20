@@ -1,0 +1,2 @@
+HTTPD_SERVER=nginx-stable-alpine
+DOCKER_FILE=nginx-stable.alpine

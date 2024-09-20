@@ -113,7 +113,7 @@ This variable controls the user id of the webserver process.
 > **Backgrund:** The webserver docker image has a non-root user (and group) that the webserver process runs with. When one of your PHP scripts creates a file (cache, uploads, etc), it is being created with the user id and group id, the webserver process runs with. In order to make sure this is the same user id as your normal user locally on the host system, this env variable can be used to change the user id inside the container (during startup).
 **Why can't the webserver process run as root?** It would then create files with root permissions and as those files are actually on your host system, you would require root permission to access/edit them again.
 >
-> You can read more about this topic here: [Syncronize file and folder Permissions](https://github.com/devilbox/docker-php-fpm/blob/master/doc/syncronize-file-permissions.md).
+> You can read more about this topic here: [Syncronize file and folder Permissions](https://github.com/john-ea/docker-php-fpm/blob/master/doc/syncronize-file-permissions.md).
 
 What value should I set this to? Open up a terminal on your host system and type **`id -u`** to find out the user id of your local user.
 

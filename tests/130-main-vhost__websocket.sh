@@ -9,7 +9,6 @@ CWD="$(cd -P -- "$(dirname -- "$0")" && pwd -P)"
 IMAGE="${1}"
 TAG="${2}"
 ARCH="${3}"
-DOCKER_USER="${4}"
 
 ###
 ### Load Library

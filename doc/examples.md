@@ -39,7 +39,7 @@ This example creates the main (default) vhost, which only serves static files.
    docker run -d -it \
        -p 9090:80 \
        -v $(pwd)/www:/var/www/default \
-       devilbox/nginx-stable
+       johnea/webserver:nginx-stable
    ```
 3. Verify
    ```bash
@@ -55,9 +55,9 @@ This example creates the main (default) vhost, which contacts a remote PHP-FPM h
 * **Vhost:** main (default)
 * **Backend:** PHP-FPM
 
-| PHP-FPM Reference Images |
-|--------------------------|
-| <a title="PHP-FPM Reference Images" href="https://github.com/devilbox/docker-php-fpm" ><img title="Devilbox" height="82px" src="https://raw.githubusercontent.com/devilbox/artwork/master/submissions_banner/cytopia/02/png/banner_256_trans.png" /></a> |
+| PHP-FPM Reference Images                                                                                                                                                                                                                                |
+|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| <a title="PHP-FPM Reference Images" href="https://github.com/john-ea/docker-php-fpm" ><img title="Devilbox" height="82px" src="https://raw.githubusercontent.com/devilbox/artwork/master/submissions_banner/cytopia/02/png/banner_256_trans.png" /></a> |
 
 > 🛈 For this to work, the `$(pwd)/www` directory must be mounted into the webserver container as well as into the php-fpm container.<br/>
 > 🛈 With no further configuration, the webserver expects files to be served by the main vhost in: `/var/www/default/htdocs`.
@@ -72,7 +72,7 @@ This example creates the main (default) vhost, which contacts a remote PHP-FPM h
    docker run -d -it \
        --name php \
        -v $(pwd)/www:/var/www/default \
-       devilbox/php-fpm:8.2-base
+       johnea/php-fpm:8.2-base
    ```
 3. Start the webserve, linking it to the PHP-FPM container
    ```bash
@@ -81,7 +81,7 @@ This example creates the main (default) vhost, which contacts a remote PHP-FPM h
        -v $(pwd)/www:/var/www/default \
        -e MAIN_VHOST_BACKEND='conf:phpfpm:tcp:php:9000' \
        --link php \
-       devilbox/nginx-stable
+       johnea/webserver:nginx-stable
    ```
 4. Verify
    ```bash
@@ -94,7 +94,7 @@ This example creates the main (default) vhost, which contacts a remote PHP-FPM h
 
 The same as the previous example, but also ensures that you can edit files locally and have file ownerships synced with webserver and PHP-FPM container.
 
-> See **[Syncronize File System Permissions](https://github.com/devilbox/docker-php-fpm/blob/master/doc/syncronize-file-permissions.md)** for details
+> See **[Syncronize File System Permissions](https://github.com/john-ea/docker-php-fpm/blob/master/doc/syncronize-file-permissions.md)** for details
 
 * **Vhost:** main (default)
 * **Backend:** PHP-FPM
@@ -116,7 +116,7 @@ The same as the previous example, but also ensures that you can edit files local
        -v $(pwd)/www:/var/www/default \
        -e NEW_UID=$(id -u) \
        -e NEW_GID=$(id -g) \
-       devilbox/php-fpm:8.2-base
+       johnea/php-fpm:8.2-base
    ```
 3. Start the webserve, linking it to the PHP-FPM container
    ```bash
@@ -127,7 +127,7 @@ The same as the previous example, but also ensures that you can edit files local
        -e NEW_GID=$(id -g) \
        -e MAIN_VHOST_BACKEND='conf:phpfpm:tcp:php:9000' \
        --link php \
-       devilbox/nginx-stable
+       johnea/webserver:nginx-stable
    ```
 4. Verify
    ```bash
@@ -165,7 +165,7 @@ Additionally we are mounting the `./ca` directory into the container under `/ca`
        -e NEW_UID=$(id -u) \
        -e NEW_GID=$(id -g) \
        -v $(pwd)/www:/var/www/default \
-       devilbox/php-fpm:8.2-base
+       johnea/php-fpm:8.2-base
    ```
 3. Start the webserve, linking it to the PHP-FPM container
    ```bash
@@ -179,7 +179,7 @@ Additionally we are mounting the `./ca` directory into the container under `/ca`
        -e MAIN_VHOST_BACKEND='conf:phpfpm:tcp:php:9000' \
        -e MAIN_VHOST_SSL_TYPE='redir' \
        --link php \
-       devilbox/nginx-stable
+       johnea/webserver:nginx-stable
    ```
 4. Verify redirect
    ```bash
@@ -229,7 +229,7 @@ The following example proxies all HTTP requests to a NodeJS remote backend. You 
        -p 80:80 \
        -e MAIN_VHOST_BACKEND='conf:rproxy:http:nodejs:3000' \
        --link nodejs \
-       devilbox/nginx-stable
+       johnea/webserver:nginx-stable
    ```
 4. Verify
    ```bash
@@ -306,7 +306,7 @@ The following example proxies all HTTP requests to a Websocket remote backend. Y
        -p 80:80 \
        -e MAIN_VHOST_BACKEND='conf:rproxy:ws:websocket:3000' \
        --link websocket \
-       devilbox/nginx-stable
+       johnea/webserver:nginx-stable
    ```
 4. Verify
    ```bash
@@ -341,14 +341,14 @@ Additionally all projects will have the `.com` suffix added to their domain name
    docker run -d -it \
        --name mysql \
        -e MYSQL_ROOT_PASSWORD=my-secret-pw \
-       devilbox/mysql:mariadb-10.10
+       johnea/mysql:mariadb-10.10
    ```
 3. Start the PHP-FPM container
    ```bash
    docker run -d -it \
        --name php \
        -v $(pwd)/www:/shared/httpd \
-       devilbox/php-fpm:8.2-base
+       johnea/php-fpm:8.2-base
    ```
 4. Start the webserver container, linking it to the two above
    ```bash
@@ -361,7 +361,7 @@ Additionally all projects will have the `.com` suffix added to their domain name
        -e MASS_VHOST_BACKEND='conf:phpfpm:tcp:php:9000' \
        --link php \
        --link mysql \
-       devilbox/nginx-stable
+       johnea/webserver:nginx-stable
    ```
 5. Create `project-1`
    ```bash

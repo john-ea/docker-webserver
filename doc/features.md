@@ -57,7 +57,7 @@ docker run -it \
     -e MASS_VHOST_DOCROOT_DIR=www \
     -e MASS_VHOST_TLD_SUFFIX=.loc \
     -v /local/path:/shared/httpd \
-    devilbox/nginx-stable
+    johnea/webserver:nginx-stable
 ```
 
 
@@ -74,7 +74,7 @@ echo '<?php echo "it works";' > www/htdocs/index.php
 docker run -d -it \
     --name phpserver \
     -v $(pwd)/www:/var/www/default \
-    devilbox/php-fpm:8.2-base
+    johnea/php-fpm:8.2-base
 
 # Start the webserver
 # Where 'phpserver' is the hostname or IP address of the PHP-FPM server
@@ -83,7 +83,7 @@ docker run -it \
     -v $(pwd)/www:/var/www/default \
     -e MAIN_VHOST_BACKEND='conf:phpfpm:tcp:phpserver:9000' \
     --link phpserver \
-    devilbox/nginx-stable
+    johnea/webserver:nginx-stable
 ```
 
 
