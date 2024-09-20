@@ -14,15 +14,19 @@ DOCKER_FILE="${2:-nginx-stable.alpine}"
 change_config() {
   local type="${1}"
   local value="${2}"
-	local current=$(grep -Eo "^${type}+[[:print:]]*" "${ENV_FILE}" | sed "s/.*${type}//g")
-	local safe_current=$(printf "%s" "$current" | sed 's/[^[:alnum:]]/\\&/g')
-	local safe_new=$(printf "%s" "${value}" | sed 's/[^[:alnum:]]/\\&/g')
+	local current
+	local safe_current
+	local safe_new
+
+	current=$(grep -Eo "^${type}+[[:print:]]*" "${ENV_FILE}" | sed "s/.*${type}//g")
+	safe_current=$(printf "%s" "$current" | sed 's/[^[:alnum:]]/\\&/g')
+	safe_new=$(printf "%s" "${value}" | sed 's/[^[:alnum:]]/\\&/g')
 
   sed -i -e "s/\(^#*${type}${safe_current}\).*/${type}${safe_new}/" "${ENV_FILE}"
 }
 
-change_config ${HTTPD_CONFIG} ${IMAGE}
-change_config ${DOCKER_FILE_CONFIG} ${DOCKER_FILE}
+change_config "${HTTPD_CONFIG}" "${IMAGE}"
+change_config "${DOCKER_FILE_CONFIG}" "${DOCKER_FILE}"
 
 cd "${SCRIPTPATH}"
 # shellcheck disable=SC2035,SC2045
