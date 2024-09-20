@@ -596,7 +596,7 @@ This variable controls whether webserver access and error logs are written to a 
 * **Allowed:** `0` or `1`
 * **Var type:** `bool`
 
-By default (value: `1`) all Docker images are configured to output their webserver access and error logs to stdout and stderr, which means it is shown by `docker logs` (or `docker-compose logs`).
+By default (value: `1`) all Docker images are configured to output their webserver access and error logs to stdout and stderr, which means it is shown by `docker logs` (or `docker compose logs`).
 
 If you want to log into files inside the container instead, change it to `0`. The respective log files are available in `/var/log/httpd/` and can be mounted to your local file system so you can `cat`, `tail` or `grep` them for anything interesting.
 

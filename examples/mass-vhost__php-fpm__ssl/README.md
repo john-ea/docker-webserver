@@ -27,8 +27,8 @@ The files for each vhost are being served from:
 
 You can reach those two projects via:
 ```bash
-# Ensure docker-compose is running
-docker-compose up
+# Ensure docker compose is running
+docker compose up
 
 # Now verify
 curl http://localhost:8000 -H 'host: sample.loc'
@@ -39,8 +39,8 @@ curl http://localhost:8000 -H 'host: test.loc'
 
 In this example we add more projects during run-time
 ```bash
-# Ensure docker-compose is running
-docker-compose up
+# Ensure docker compose is running
+docker compose up
 ```
 
 Now as the HTTP and PHP container are up and running, we can add more projects:

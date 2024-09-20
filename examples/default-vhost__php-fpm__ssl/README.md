@@ -4,7 +4,7 @@ Docker Compose example with a remote PHP-FPM server and serving HTTPS
 
 ## Run
 ```bash
-docker-compose up
+docker compose up
 ```
 
 ## View
