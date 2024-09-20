@@ -4,7 +4,7 @@ Docker Compose example with only serving static files.
 
 ## Run
 ```bash
-docker-compose up
+docker compose up
 ```
 
 ## View

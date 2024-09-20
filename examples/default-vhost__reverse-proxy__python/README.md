@@ -4,7 +4,7 @@ Docker Compose example with HTTPD acting as a Reverse Proxy and a remote Python 
 
 ## Run
 ```bash
-docker-compose up
+docker compose up
 ```
 
 ## View

@@ -95,19 +95,16 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       matrix: ${{ env.MATRIX }}
-#      matrix: ${{ steps.variables.outputs.matrix }}
     steps:
       - name: Print inputs passed to the reusable workflow
         id: variables
         if: false
         run: echo
-#        run: |
-#          echo "matrix=${{ env.MATRIX }}" >> $GITHUB_OUTPUT
 
   # (2/3) Determine repository params
   params:
     name: Compute params
-    needs: [ set-env ]
+    needs: [set-env]
     uses: ./.github/workflows/params.yml
     with:
       matrix: ${{ needs.set-env.outputs.matrix }}

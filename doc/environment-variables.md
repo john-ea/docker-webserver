@@ -113,7 +113,7 @@ This variable controls the user id of the webserver process.
 > **Backgrund:** The webserver docker image has a non-root user (and group) that the webserver process runs with. When one of your PHP scripts creates a file (cache, uploads, etc), it is being created with the user id and group id, the webserver process runs with. In order to make sure this is the same user id as your normal user locally on the host system, this env variable can be used to change the user id inside the container (during startup).
 **Why can't the webserver process run as root?** It would then create files with root permissions and as those files are actually on your host system, you would require root permission to access/edit them again.
 >
-> You can read more about this topic here: [Syncronize file and folder Permissions](https://github.com/devilbox/docker-php-fpm/blob/master/doc/syncronize-file-permissions.md).
+> You can read more about this topic here: [Syncronize file and folder Permissions](https://github.com/john-ea/docker-php-fpm/blob/master/doc/syncronize-file-permissions.md).
 
 What value should I set this to? Open up a terminal on your host system and type **`id -u`** to find out the user id of your local user.
 
@@ -179,7 +179,7 @@ The following Docker logs output shows settings for `*_VHOST_DOCROOT_DIR` set to
 
 ## ∑ `MAIN_VHOST_TEMPLATE_DIR`
 
-The given directory name (not path) is appended to the vhost base path. This is the final location in which [vhost-gen](https://github.com/devilbox/vhost-gen/) will look for custom templates for the main (default) vhost creation.
+The given directory name (not path) is appended to the vhost base path. This is the final location in which [vhost-gen](https://github.com/john-ea/vhost-gen/) will look for custom templates for the main (default) vhost creation.
 
 * **Default:** `cfg`
 * **Allowed:** valid directory name
@@ -200,7 +200,7 @@ The following Docker logs output shows settings for `*_VHOST_TEMPLATE_DIR` set t
 
 <img style="height: 380px;" height="180" src="img/httpd-dir-docroot-template.png" />
 
-**Note:** In most cases it is not required to mess with the `vhost-gen` templates, but if you want some major customizations, download the **[vhost-gen templates](https://github.com/devilbox/vhost-gen/tree/master/etc/templates)**, adjust it and put it into the directory prior startup (via mount).
+**Note:** In most cases it is not required to mess with the `vhost-gen` templates, but if you want some major customizations, download the **[vhost-gen templates](https://github.com/john-ea/vhost-gen/tree/master/etc/templates)**, adjust it and put it into the directory prior startup (via mount).
 
 
 
@@ -573,7 +573,7 @@ Set the domain suffix for all virtual hosts created via the `MASS_VHOST_ENABLE`.
 * **Requires:** `MASS_VHOST_ENABLE=1`
 
 
-**Background:** When `MASS_VHOST_ENABLE` is set to `1`. [watcherd](https://github.com/devilbox/watcherd) will listen for directory changes (creations, deletions, renamings) in `/shared/httpd`. As soon as a project directory is created below that path, `watcherd` will trigger [vhost-gen](https://github.com/devilbox/vhost-gen/) to create a new virtual host and reloads the webserver.
+**Background:** When `MASS_VHOST_ENABLE` is set to `1`. [watcherd](https://github.com/devilbox/watcherd) will listen for directory changes (creations, deletions, renamings) in `/shared/httpd`. As soon as a project directory is created below that path, `watcherd` will trigger [vhost-gen](https://github.com/john-ea/vhost-gen/) to create a new virtual host and reloads the webserver.
 
 Each project virtual host created will have a name of `<DIRECTORY_NAME>${MASS_VHOST_TLD_SUFFIX}`. See the table below for details:
 
@@ -596,7 +596,7 @@ This variable controls whether webserver access and error logs are written to a 
 * **Allowed:** `0` or `1`
 * **Var type:** `bool`
 
-By default (value: `1`) all Docker images are configured to output their webserver access and error logs to stdout and stderr, which means it is shown by `docker logs` (or `docker-compose logs`).
+By default (value: `1`) all Docker images are configured to output their webserver access and error logs to stdout and stderr, which means it is shown by `docker logs` (or `docker compose logs`).
 
 If you want to log into files inside the container instead, change it to `0`. The respective log files are available in `/var/log/httpd/` and can be mounted to your local file system so you can `cat`, `tail` or `grep` them for anything interesting.
 

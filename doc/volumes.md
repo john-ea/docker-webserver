@@ -24,7 +24,7 @@ Mount this directory to your local file system in order to add html, js, php, et
 docker run -d -it \
     -v $(pwd)/default:/var/www/default \
     -e MAIN_VHOST_ENABLE=1 \
-    devilbox/nginx-stable
+    johnea/webserver:nginx-stable
 ```
 
 
@@ -43,7 +43,7 @@ Mount this directory to your local file system in order to add html, js, php, et
 docker run -d -it \
     -v $(pwd)/projects:/shared/httpd \
     -e MASS_VHOST_ENABLE=1 \
-    devilbox/nginx-stable
+    johnea/webserver:nginx-stable
 ```
 
 
@@ -68,6 +68,6 @@ Mount this directory to your local file system and add any valid `*.conf` files 
 ## 📂 `/etc/vhost-gen.d/`
 
 * **type:** config directory
-* **purpose:** Add [vhost-gen](https://github.com/devilbox/vhost-gen) templates to alter the webserver behaviour
+* **purpose:** Add [vhost-gen](https://github.com/john-ea/vhost-gen) templates to alter the webserver behaviour
 
-Copy and customize [nginx.yml](https://github.com/devilbox/vhost-gen/blob/master/etc/templates/nginx.yml) into this mounted directory for global vhost customizations.
+Copy and customize [nginx.yml](https://github.com/john-ea/vhost-gen/blob/master/etc/templates/nginx.yml) into this mounted directory for global vhost customizations.

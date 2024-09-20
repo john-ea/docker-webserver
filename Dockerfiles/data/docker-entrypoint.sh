@@ -17,10 +17,10 @@ set -o pipefail
 ###   MY_GROUP
 ###   HTTPD_START
 ###   HTTPD_RELOAD
-###   VHOSTGEN_HTTPD_SERVER  # 'nginx', 'apache22' or 'apache24'
+###   VHOSTGEN_HTTPD_SERVER  # 'nginx', 'apache24'
 
 ###
-### Can be any of 'nginx', 'apache22' or 'apache24'
+### Can be any of 'nginx', 'apache24'
 ###
 # VHOSTGEN_HTTPD_SERVER is set via Dockerfile
 VHOSTGEN_HTTPD_SERVER_TEMPLATE="${VHOSTGEN_HTTPD_SERVER}.yml"
@@ -148,12 +148,9 @@ if [ "${VHOSTGEN_HTTPD_SERVER}" = "nginx" ]; then
 	env_var_export "WORKER_CONNECTIONS" "1024"
 	env_var_export "WORKER_PROCESSES" "auto"
 fi
-# Apache 2.2 does not have HTTP/2 support
-if [ "${VHOSTGEN_HTTPD_SERVER}" != "apache22" ]; then
-	env_var_export "HTTP2_ENABLE" "1"
-else
-	export HTTP2_ENABLE=0
-fi
+
+env_var_export "HTTP2_ENABLE" "1"
+
 env_var_export "DOCKER_LOGS" "1"
 
 
@@ -201,10 +198,7 @@ if [ "${VHOSTGEN_HTTPD_SERVER}" = "nginx" ]; then
 	env_var_validate "WORKER_CONNECTIONS"
 	env_var_validate "WORKER_PROCESSES"
 fi
-# Apache 2.2 does not have HTTP/2 support
-if [ "${VHOSTGEN_HTTPD_SERVER}" != "apache22" ]; then
-	env_var_validate "HTTP2_ENABLE"
-fi
+env_var_validate "HTTP2_ENABLE"
 env_var_validate "DOCKER_LOGS"
 
 

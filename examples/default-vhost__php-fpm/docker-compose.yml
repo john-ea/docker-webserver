@@ -5,10 +5,10 @@ services:
 
   # HTTPD Server
   httpd:
-    image: johnea/webserver:nginx-stable-alpine
+    image: johnea/webserver:${HTTPD_SERVER:-nginx-stable}
     build:
       context: ../../Dockerfiles
-      dockerfile: Dockerfile.alpine
+      dockerfile: Dockerfile-${DOCKER_FILE:-nginx-stable.alpine}
     hostname: httpd
     environment:
       - NEW_UID=1000

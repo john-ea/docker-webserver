@@ -9,13 +9,6 @@ CWD="$(cd -P -- "$(dirname -- "$0")" && pwd -P)"
 IMAGE="${1}"
 TAG="${2}"
 ARCH="${3}"
-DOCKER_USER="${4}"
-
-if [ "${IMAGE}" = "${DOCKER_USER}/webserver:apache-2.2" ]; then
-	echo "Skipping websocket check for Apache 2.2 - not supported."
-	exit 0
-fi
-
 
 ###
 ### Load Library

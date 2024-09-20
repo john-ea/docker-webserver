@@ -17,10 +17,10 @@
 
 This project is using four core tools that interact with each other in order to achieve automated project-based mass virtual hosting with HTTPS support from SSL certificates signed by an internal CA.
 
-| Tool | Usage |
-|------|-------|
-| [`vhost-gen`](https://github.com/devilbox/vhost-gen) | An arbitrary vhost generator for Nginx (mainline and stable), Apache 2.2 and Apache 2.4 to ensure one config generates the same vhost functionality independently of underlying webserver |
-| [`cert-gen`](https://github.com/devilbox/cert-gen)   | A tool to generate and validate Certificate Authorities and SSL certificates which are signed by a Certificate Authority |
+| Tool                                                 | Usage |
+|------------------------------------------------------|-------|
+| [`vhost-gen`](https://github.com/john-ea/vhost-gen) | An arbitrary vhost generator for Nginx (mainline and stable), Apache 2.4 to ensure one config generates the same vhost functionality independently of underlying webserver |
+| [`cert-gen`](https://github.com/john-ea/cert-gen)    | A tool to generate and validate Certificate Authorities and SSL certificates which are signed by a Certificate Authority |
 | [`watcherd`](https://github.com/devilbox/watcherd)   | A file system change detecter (`inotify`-based or `bash`-based), which acts on changes (`add` or `delete` of directories in this case) with custom commands and offers a trigger command on change. (in this configuration, it will call `vhost-gen`, when a new directory is added in order to make the mass vhost possible. It will call a generic `rm ...` commad for a `delete` and restarts the webserver as its trigger command. |
 | [`supervisord`](http://supervisord.org/)             | A daemon that manages the run-time of multiple other daemons. In this case it ensures that `watcherd` and the webserver are up and running. |
 
@@ -102,8 +102,8 @@ To get some insights on the internals, here is an overview about all directory p
 | `/etc/httpd/vhost.d/`            | Webserver configuration directory: Stores mass vhost configuration files |
 | `/etc/httpd-custom.d/`           | Webserver configuration directory: Mount this and place your custom webserver configuration files in here |
 | `/var/logs/httpd/`               | Webserver log directory |
-| `/etc/vhost-gen/`                | Directory for [vhost-gen](https://github.com/devilbox/vhost-gen/): contains its default configuration (placed during install time) |
-| `/etc/vhost-gen.d/`              | Directory for [vhost-gen](https://github.com/devilbox/vhost-gen/): mount this and place custom `vhost-gen` templates to override `vhost-gen`'s behaviour. Templates can be found: [here](https://github.com/devilbox/vhost-gen/tree/master/etc/templates) |
+| `/etc/vhost-gen/`                | Directory for [vhost-gen](https://github.com/john-ea/vhost-gen/): contains its default configuration (placed during install time) |
+| `/etc/vhost-gen.d/`              | Directory for [vhost-gen](https://github.com/john-ea/vhost-gen/): mount this and place custom `vhost-gen` templates to override `vhost-gen`'s behaviour. Templates can be found: [here](https://github.com/john-ea/vhost-gen/tree/master/etc/templates) |
 | [`/docker-entrypoint.sh`](../Dockerfiles/data/docker-entrypoint.sh)   | Entrypoint script that will be executed by the container during startup |
 | `/docker-entrypoint.d/`          | Entrypoint validators and functions that are used by `/docker-entrypoint.sh` |
 | [`/etc/supervisord.conf`](../Dockerfiles/data/docker-entrypoint.d/15-supervisord.sh) | Supervisord coniguration file. Supervisord will only be started, whenn `MASS_VHOST_ENABLE` is set to `1` |
