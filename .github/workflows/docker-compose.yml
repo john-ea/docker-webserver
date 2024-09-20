@@ -23,7 +23,7 @@ jobs:
   docker-compose:
     runs-on: ubuntu-latest
     strategy:
-      fail-fast: False
+      fail-fast: false
       matrix:
         param:
           - 'apache-2.4 apache-2.4.latest'
@@ -36,7 +36,7 @@ jobs:
           - 'nginx-mainline-alpine nginx-mainline.alpine'
           - 'nginx-mainline-debian nginx-mainline.debian'
 
-    name: "[ ${{ matrix.param }} ]"
+    name: "[Params ${{ matrix.param }}]"
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
